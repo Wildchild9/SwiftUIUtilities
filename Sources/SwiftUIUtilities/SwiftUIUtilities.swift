@@ -1,4 +1,3 @@
-#if canImport(SwiftUI)
 import SwiftUI
 
 extension ForEach where Content : View {
@@ -230,6 +229,3 @@ extension ForEach where Data == Range<Int>, ID == Int, Content : View {
         }
     }
 }
-
-
-#endif

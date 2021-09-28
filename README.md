@@ -1,3 +1,3 @@
 # SwiftUIUtilities
 
-A description of this package.
+A set of utilities to make working with SwiftUI easier.
