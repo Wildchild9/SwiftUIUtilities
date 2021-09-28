@@ -122,8 +122,8 @@ extension ForEach where Content: View {
     init<C, T, U>(
         _ data: Binding<C>,
         id: KeyPath<C.Element, ID>,
-        content: @escaping (Binding<C.Element>) -> T,
-        divider: @escaping (T) -> U
+        @ViewBuilder content: @escaping (Binding<C.Element>) -> T,
+        @ViewBuilder divider: @escaping (T) -> U
     ) where
         T: View,
         U: View,
@@ -171,8 +171,8 @@ extension ForEach where Content: View {
     init<C, T, U>(
         _ data: Binding<C>,
         id: KeyPath<C.Element, ID>,
-        content: @escaping (Binding<C.Element>) -> T,
-        divider: @escaping () -> U
+        @ViewBuilder content: @escaping (Binding<C.Element>) -> T,
+        @ViewBuilder divider: @escaping () -> U
     ) where
         T: View,
         U: View,
@@ -272,16 +272,28 @@ public struct Bar: View {
     @Binding var arr: [String]
     
     public var body: some View {
-        ForEach($arr, id: \.self) { str in
-            
-            TextField("text field", text: str)
-                .background(Color.red)
+        VStack(spacing: 0) {
+            ForEach($arr, id: \.self) { str in
                 
-        } divider: {
-            Rectangle()
-                .fill(Color.gray)
-                .frame(height: 0.5)
-                .padding(.vertical, 5)
+                TextField("text field", text: str)
+                    .background(Color.red)
+                    
+            } divider: {
+                Circle()
+                    .fill(Color.primary)
+                    .frame(height: 5)
+                    .padding(.vertical, 3)
+                Circle()
+                    .fill(Color.primary)
+                    .frame(height: 5)
+                    .padding(.vertical, 3)
+
+                Circle()
+                    .fill(Color.primary)
+                    .frame(height: 5)
+                    .padding(.vertical, 3)
+
+            }
         }
     }
 }
