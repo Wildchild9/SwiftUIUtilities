@@ -1,3 +1,4 @@
+#if canImport(SwiftUI)
 import SwiftUI
 
 extension ForEach where Content : View {
@@ -93,7 +94,7 @@ extension ForEach where Content : View {
 
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension ForEach where Content: View {
-    init<C, T, U>(
+    public init<C, T, U>(
         _ data: Binding<C>,
         @ViewBuilder content: @escaping (Binding<C.Element>) -> T,
         @ViewBuilder divider: @escaping (T) -> U
@@ -117,7 +118,7 @@ extension ForEach where Content: View {
         }
     }
     
-    init<C, T, U>(
+    public init<C, T, U>(
         _ data: Binding<C>,
         id: KeyPath<C.Element, ID>,
         @ViewBuilder content: @escaping (Binding<C.Element>) -> T,
@@ -140,7 +141,7 @@ extension ForEach where Content: View {
         }
     }
     
-    init<C, T, U>(
+    public init<C, T, U>(
         _ data: Binding<C>,
         @ViewBuilder content: @escaping (Binding<C.Element>) -> T,
         @ViewBuilder divider: @escaping () -> U
@@ -166,7 +167,7 @@ extension ForEach where Content: View {
         }
     }
     
-    init<C, T, U>(
+    public init<C, T, U>(
         _ data: Binding<C>,
         id: KeyPath<C.Element, ID>,
         @ViewBuilder content: @escaping (Binding<C.Element>) -> T,
@@ -229,3 +230,4 @@ extension ForEach where Data == Range<Int>, ID == Int, Content : View {
         }
     }
 }
+#endif
