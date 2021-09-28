@@ -106,8 +106,7 @@ extension ForEach where Content: View {
         ID == C.Element.ID,
         C: MutableCollection,
         C: RandomAccessCollection,
-        C.Element : Identifiable,
-        C.Index : Hashable
+        C.Element : Identifiable
     {
         self.init(data.indices.lazy.map({ ($0, data[$0].id) }), id: \.1) { (index, _) in
             if data.startIndex != data.endIndex, index < data.index(before: data.endIndex) {
@@ -129,8 +128,7 @@ extension ForEach where Content: View {
         Content == SwiftUI._ConditionalContent<U, T>,
         Data == LazyMapSequence<C.Indices, (C.Index, ID)>,
         C: MutableCollection,
-        C: RandomAccessCollection,
-        C.Index : Hashable
+        C: RandomAccessCollection
     {
         self.init(data.indices.lazy.map({ ($0, data[$0].wrappedValue[keyPath: id]) }), id: \.1) { (index, _) in
             if data.startIndex != data.endIndex, index < data.index(before: data.endIndex) {
@@ -153,8 +151,7 @@ extension ForEach where Content: View {
         ID == C.Element.ID,
         C: MutableCollection,
         C: RandomAccessCollection,
-        C.Element : Identifiable,
-        C.Index : Hashable
+        C.Element : Identifiable
     {
         
         self.init(data.indices.lazy.map({ ($0, data[$0].id) }), id: \.1) { (index, _) in
@@ -178,8 +175,7 @@ extension ForEach where Content: View {
         Content == SwiftUI._ConditionalContent<TupleView<(T, U)>, T>,
         Data == LazyMapSequence<C.Indices, (C.Index, ID)>,
         C: MutableCollection,
-        C: RandomAccessCollection,
-        C.Index : Hashable
+        C: RandomAccessCollection
     {
         self.init(data.indices.lazy.map({ ($0, data[$0].wrappedValue[keyPath: id]) }), id: \.1) { (index, _) in
             if data.startIndex != data.endIndex, index < data.index(before: data.endIndex) {
