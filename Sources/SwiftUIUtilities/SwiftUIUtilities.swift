@@ -109,7 +109,6 @@ extension ForEach where Content: View {
         C.Element : Identifiable,
         C.Index : Hashable
     {
-        
         self.init(data.indices.lazy.map({ ($0, data[$0].id) }), id: \.1) { (index, _) in
             if data.startIndex != data.endIndex, index < data.index(before: data.endIndex) {
                 divider(content(data[index].projectedValue))
@@ -232,76 +231,5 @@ extension ForEach where Data == Range<Int>, ID == Int, Content : View {
     }
 }
 
-
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-public struct Foo: View {
-    
-    var arr = [1, 2, 3, 4, 5]
-    
-    @State var strArr = ["a2", "b", "c", "d"]
-    public var body: some View {
-        VStack {
-            Text("Testing")
-                .font(.title)
-            Text(strArr.joined())
-            Bar(arr: $strArr)
-        }
-        .padding()
-        //        VStack(spacing: 0) {
-        //            ForEach(arr) { i in
-        //                Text("\(i)")
-        //            } divider: { view in
-        //                view
-        //                    .background(
-        //                        Rectangle()
-        //                            .fill(Color.red)
-        //                    )
-        //                    .padding(.bottom, 10)
-        //            }
-        //        }
-        
-    }
-}
-
-extension String: Identifiable {
-    public var id: String { return self }
-}
-
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-public struct Bar: View {
-    @Binding var arr: [String]
-    
-    public var body: some View {
-        VStack(spacing: 0) {
-            ForEach($arr, id: \.self) { str in
-                
-                TextField("text field", text: str)
-                    .background(Color.red)
-                    
-            } divider: {
-                Circle()
-                    .fill(Color.primary)
-                    .frame(height: 5)
-                    .padding(.vertical, 3)
-                Circle()
-                    .fill(Color.primary)
-                    .frame(height: 5)
-                    .padding(.vertical, 3)
-
-                Circle()
-                    .fill(Color.primary)
-                    .frame(height: 5)
-                    .padding(.vertical, 3)
-
-            }
-        }
-    }
-}
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-struct Foo_Previews: PreviewProvider {
-    static var previews: some View {
-        Foo()
-    }
-}
 
 #endif
